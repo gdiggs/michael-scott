@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require "./lib/calendar"
+require "./lib/event_data"
+
+filename = ARGV[0]
+
+if filename.nil?
+  $stderr.puts "Usage: ./run data-file.yml"
+  exit 64
+end
+
+data = EventData.from_yaml(filename)
+calendar = Calendar.new
+
+data.events.each do |event|
+  calendar.create_events(event[:name], event[:date].month, event[:date].day)
+end
+
+puts calendar.to_ical
