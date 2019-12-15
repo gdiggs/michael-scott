@@ -15,4 +15,18 @@ birthdays:
   Meredith Palmer: "05-12"
 ```
 
-Then, run the script `./run data.yml > team_events.ical` and import it into your calendar
+Then, run the script `./run data.yml > team_events.ics` and import it into your calendar
+
+## Docker Usage
+
+This script can also be run as a Docker container. You can either build it yourself or pull it from Docker Hub. To build, run:
+
+```
+docker build --rm -t gordondiggs/michael-scott .
+```
+
+And to run:
+
+```
+docker run -v "$PWD/data.yml":/tmp/data.yml gordondiggs/michael-scott /tmp/data.yml > team_events.ics
+```
