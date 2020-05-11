@@ -20,7 +20,7 @@ class EventData
 
   def anniversaries
     @anniversaries ||=
-      data["anniversaries"].map do |name, date|
+      data.fetch("anniversaries", []).map do |name, date|
         date = Date.parse(date)
         {
           date: date,
@@ -31,7 +31,7 @@ class EventData
 
   def birthdays
     @birthdays ||=
-      data["birthdays"].map do |name, date|
+      data.fetch("birthdays", []).map do |name, date|
         date = Date.strptime(date, "%m-%d")
         {
           date: date,

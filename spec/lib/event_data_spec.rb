@@ -26,5 +26,14 @@ RSpec.describe EventData do
 
       expect(data.events).to eq(expected_data)
     end
+
+    it "handles a lack of anniversaries and birthdays" do
+      raw_data = {}
+      expected_data = []
+
+      data = EventData.new(raw_data)
+
+      expect(data.events).to eq(expected_data)
+    end
   end
 end
