@@ -2,26 +2,26 @@ require_relative "../../lib/calendar"
 
 RSpec.describe Calendar do
   describe "#create_events" do
-    it "creates events for each year" do
+    it "creates events" do
       summary = "Dwight's Birthday"
       month = 1
       day = 20
-      calendar = Calendar.new(2)
+      calendar = Calendar.new
 
       calendar.create_events(summary, month, day)
 
-      expect(calendar.events.count).to eq(2)
+      expect(calendar.events.count).to eq(1)
     end
 
     it "creates events on the right day" do
       summary = "Dwight's Birthday"
       month = 1
       day = 20
-      calendar = Calendar.new(2)
+      calendar = Calendar.new
 
       calendar.create_events(summary, month, day)
 
-      expect(calendar.events.count).to eq(2)
+      expect(calendar.events.count).to eq(1)
       start_date = calendar.events.first.dtstart
       end_date = calendar.events.first.dtend
 
@@ -37,7 +37,7 @@ RSpec.describe Calendar do
       summary = "Dwight's Birthday"
       month = 1
       day = 20
-      calendar = Calendar.new(1)
+      calendar = Calendar.new
 
       calendar.create_events(summary, month, day)
 
@@ -49,7 +49,7 @@ RSpec.describe Calendar do
     summary = "Dwight's Birthday"
     month = 1
     day = 20
-    calendar = Calendar.new(1)
+    calendar = Calendar.new
 
     calendar.create_events(summary, month, day)
     ical = calendar.to_ical

@@ -5,16 +5,8 @@ require "optparse"
 require "./lib/calendar"
 require "./lib/event_data"
 
-options = {
-  years: Calendar::DEFAULT_YEARS_TO_ADD
-}
-
 optparse = OptionParser.new do |opts|
   opts.banner = "Usage: ./run [options] data-file.yml"
-
-  opts.on("-yYEARS", "--years=YEARS", Integer, "Number of years for which to create events (Defaults to #{Calendar::DEFAULT_YEARS_TO_ADD})") do |years|
-    options[:years] = years
-  end
 
   opts.on("-h", "--help", "Prints this help") do
     puts opts
@@ -32,7 +24,7 @@ if filename.nil?
 end
 
 data = EventData.from_yaml(filename)
-calendar = Calendar.new(options[:years])
+calendar = Calendar.new
 
 data.events.each do |event|
   calendar.create_events(event[:name], event[:date].month, event[:date].day)

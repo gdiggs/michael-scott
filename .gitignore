@@ -1,2 +1,4 @@
 .bundle
 data.yml
+*.ics
+spec/examples.txt
